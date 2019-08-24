@@ -2,7 +2,7 @@
   display: table;
   border-collapse: collapse;
   background-color: white;
-  box-shadow: 0 0 15px rgba(100, 100, 100, .5);
+  box-shadow: 0 0 15px rgba(100, 100, 100, 0.5);
   margin: 20px;
 }
 
@@ -15,6 +15,12 @@
   width: 15px;
   height: 15px;
   border: 1px solid #aaa;
+  background-color: transparent;
+}
+
+.cell:not(.active),
+.cell:not(:hover) {
+  transition: background-color 100ms;
 }
 
 .cell.active {
