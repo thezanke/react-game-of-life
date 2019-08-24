@@ -1,5 +1,4 @@
 import { GameState, CellState, UpdateFunc } from './types';
-// import { createGameState } from './create-game-state';
 
 export type UpdateCellFunc = (board: GameState, x: number, y: number, value: CellState | UpdateFunc) => GameState;
 
@@ -15,9 +14,11 @@ export class GameEngine {
   }
 
   toggleCell(state: GameState, x: number, y: number) {
-    return this.mapState(state, (cellState, cellX, cellY) => {
-      return x === cellX && y === cellY ? 1 - cellState : cellState;
-    });
+    return [
+      ...state.slice(0, y),
+      [...state[y].slice(0, x), 1 - state[y][x], ...state[y].slice(x + 1)],
+      ...state.slice(y + 1)
+    ];
   }
 
   getNeighbors(state: GameState, x: number, y: number) {
@@ -44,16 +45,12 @@ export class GameEngine {
       const liveNeighbors = neighbors.filter(Boolean).length;
 
       if (cellState === CellState.ALIVE) {
-        // Any live cell with fewer than two live neighbors dies, as if caused by under population.
         if (liveNeighbors < 2) return CellState.DEAD;
-        // Any live cell with more than three live neighbors dies, as if by overpopulation.
         if (liveNeighbors > 3) return CellState.DEAD;
       }
 
-      // Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
       if (liveNeighbors === 3) return CellState.ALIVE;
 
-      // Goldilocks
       return cellState;
     });
   }
