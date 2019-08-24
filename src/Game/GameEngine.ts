@@ -1,6 +1,9 @@
-import { GameState, CellState, UpdateFunc } from './types';
+export enum CellState {
+  DEAD,
+  ALIVE
+}
 
-export type UpdateCellFunc = (board: GameState, x: number, y: number, value: CellState | UpdateFunc) => GameState;
+export type GameState = CellState[][];
 
 export class GameEngine {
   constructor(private width: number, private height: number) {}
@@ -39,8 +42,12 @@ export class GameEngine {
     ];
   }
 
-  getNextGeneration(state: GameState): GameState {
-    return this.mapState(state, (cellState, cellX, cellY) => {
+  getNextGeneration(state: GameState): [GameState, boolean] {
+    let empty = true;
+
+    const nextState = this.mapState(state, (cellState, cellX, cellY) => {
+      if (empty && cellState) empty = false;
+
       const neighbors = this.getNeighbors(state, cellX, cellY);
       const liveNeighbors = neighbors.filter(Boolean).length;
 
@@ -53,5 +60,7 @@ export class GameEngine {
 
       return cellState;
     });
+
+    return [nextState, empty];
   }
 }

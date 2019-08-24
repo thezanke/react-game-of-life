@@ -1,7 +1,12 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React from 'react';
 import { GameBoard } from './GameBoard';
-import { GameActions, GameState } from './types';
-import { GameEngine } from './GameEngine';
+import { useGame } from './useGame';
+
+enum ICONS {
+  STOP = '■',
+  PLAY = '▶',
+  NEXT = '✚'
+}
 
 type Props = {
   width?: number;
@@ -9,36 +14,12 @@ type Props = {
 };
 
 const Game: React.FC<Props> = ({ width = 50, height = 50 }) => {
-  const game = useMemo(() => new GameEngine(width, height), [width, height]);
-  const [playing, updatePlaying] = useState<Boolean>(false);
-  const [board, updateBoard] = useState<GameState>(game.createState(height, width));
-
-  const actions: GameActions = useMemo(
-    () => ({
-      togglePlaying() {
-        updatePlaying(!playing);
-      },
-      toggleCell(x, y) {
-        updateBoard(board => game.toggleCell(board, x, y));
-      },
-      nextGeneration: () => {
-        updateBoard(board => game.getNextGeneration(board));
-      }
-    }),
-    [game, playing, updatePlaying, updateBoard]
-  );
-
-  useEffect(() => {
-    if (playing) {
-      const interval = setInterval(actions.nextGeneration, 33);
-      return () => clearInterval(interval);
-    }
-  }, [playing, actions]);
+  const { actions, playing, board } = useGame(width, height);
 
   return (
     <>
-      <button onClick={actions.togglePlaying}>{playing ? 'stop' : 'go'}</button>
-      <button onClick={actions.nextGeneration}>⏭</button>
+      <button onClick={actions.togglePlaying}>{playing ? ICONS.STOP : ICONS.PLAY}</button>
+      <button onClick={actions.nextGeneration}>{ICONS.NEXT}</button>
       <GameBoard board={board} actions={actions} />
     </>
   );

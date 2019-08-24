@@ -18,11 +18,6 @@
   background-color: transparent;
 }
 
-.cell:not(.active),
-.cell:not(:hover) {
-  transition: background-color 100ms;
-}
-
 .cell.active {
   background-color: #444;
 }
