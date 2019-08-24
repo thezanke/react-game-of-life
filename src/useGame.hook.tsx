@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { GameEngine, GameState } from './GameEngine';
+import { GameEngine, GameState } from './GameEngine.service';
 
 export interface GameActions {
   togglePlaying(): void;

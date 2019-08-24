@@ -1,7 +1,6 @@
 import React from 'react';
-import './GameBoard.css';
-import { GameState } from './GameEngine';
-import { GameActions } from './useGame';
+import { GameState } from './GameEngine.service';
+import { GameActions } from './useGame.hook';
 
 type Props = {
   board: GameState;

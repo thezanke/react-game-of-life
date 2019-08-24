@@ -6,6 +6,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+.board {
+  display: table;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(100, 100, 100, 0.5);
+  margin: 20px;
+}
+
+.row {
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #aaa;
+  background-color: transparent;
+}
+
+.cell.active {
+  background-color: #444;
+}
+
+.cell:hover {
+  background-color: #ddd;
+}
+
+.cell.active:hover {
+  background-color: #222;
 }

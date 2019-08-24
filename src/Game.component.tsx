@@ -1,6 +1,6 @@
 import React from 'react';
-import { GameBoard } from './GameBoard';
-import { useGame } from './useGame';
+import { GameBoard } from './GameBoard.component';
+import { useGame } from './useGame.hook';
 
 enum ICONS {
   STOP = '■',
@@ -13,7 +13,7 @@ type Props = {
   height?: number;
 };
 
-const Game: React.FC<Props> = ({ width = 50, height = 50 }) => {
+export const Game: React.FC<Props> = ({ width = 50, height = 50 }) => {
   const { actions, playing, board } = useGame(width, height);
 
   return (
@@ -24,5 +24,3 @@ const Game: React.FC<Props> = ({ width = 50, height = 50 }) => {
     </>
   );
 };
-
-export default Game;
