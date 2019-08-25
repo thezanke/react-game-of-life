@@ -19,6 +19,7 @@ export const Game: React.FC<Props> = ({ width = 50, height = 50 }) => {
 
   return (
     <div className="game">
+      <h1>Life.</h1>
       <div className="controls">
         <button onClick={actions.clear}>{ICONS.CLEAR}</button>
         <button onClick={actions.togglePlaying}>{playing ? ICONS.STOP : ICONS.PLAY}</button>

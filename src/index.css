@@ -1,4 +1,6 @@
 body {
+  display: flex;
+  justify-content: center;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -8,22 +10,28 @@ body {
 
 .game {
   display: inline-block;
+  margin: 0.5em;
+  text-align: center;
 }
 
 .controls {
   display: flex;
   justify-content: center;
+  margin: 0.5em 0;
 }
 
 .controls button {
-  margin: 5px;
+  margin: 0 0.25em;
+  width: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .board {
   display: table;
   border-collapse: collapse;
   background-color: white;
-  box-shadow: 0 0 15px rgba(100, 100, 100, 0.5);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .row {
