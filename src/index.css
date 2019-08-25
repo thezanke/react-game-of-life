@@ -6,12 +6,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.game {
+  display: inline-block;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.controls button {
+  margin: 5px;
+}
+
 .board {
   display: table;
   border-collapse: collapse;
   background-color: white;
   box-shadow: 0 0 15px rgba(100, 100, 100, 0.5);
-  margin: 20px;
 }
 
 .row {

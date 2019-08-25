@@ -19,7 +19,7 @@ export const useGame = (width: number, height: number) => {
         updateBoard(game.createState(height, width));
       },
       togglePlaying() {
-        updatePlaying(p =>!p);
+        updatePlaying(p => !p);
       },
       toggleCell(x, y) {
         updateBoard(board => game.toggleCell(board, x, y));
@@ -37,7 +37,7 @@ export const useGame = (width: number, height: number) => {
 
   useEffect(() => {
     if (playing) {
-      const interval = setInterval(actions.nextGeneration, 33);
+      const interval = setInterval(actions.nextGeneration, 1000 / 60);
       return () => clearInterval(interval);
     }
   }, [playing, actions]);

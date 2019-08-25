@@ -5,7 +5,8 @@ import { useGame } from './useGame.hook';
 enum ICONS {
   STOP = '■',
   PLAY = '▶',
-  NEXT = '✚'
+  NEXT = '✚',
+  CLEAR = '❌'
 }
 
 type Props = {
@@ -17,10 +18,13 @@ export const Game: React.FC<Props> = ({ width = 50, height = 50 }) => {
   const { actions, playing, board } = useGame(width, height);
 
   return (
-    <>
-      <button onClick={actions.togglePlaying}>{playing ? ICONS.STOP : ICONS.PLAY}</button>
-      <button onClick={actions.nextGeneration}>{ICONS.NEXT}</button>
+    <div className="game">
+      <div className="controls">
+        <button onClick={actions.clear}>{ICONS.CLEAR}</button>
+        <button onClick={actions.togglePlaying}>{playing ? ICONS.STOP : ICONS.PLAY}</button>
+        <button onClick={actions.nextGeneration}>{ICONS.NEXT}</button>
+      </div>
       <GameBoard board={board} actions={actions} />
-    </>
+    </div>
   );
 };
