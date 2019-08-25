@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameBoard } from './GameBoard.component';
+import classnames from 'classnames';
 import { useGame } from './useGame.hook';
 import { GameState, CellState } from './GameEngine.service';
 
@@ -32,8 +32,16 @@ export const Game: React.FC<Props> = ({ width = 50, height = 50 }) => {
         <button onClick={actions.togglePlaying}>{buttonIcon}</button>
         <button onClick={actions.nextGeneration}>{ICONS.NEXT}</button>
       </div>
-      living: {livingCount}
-      <GameBoard board={board} actions={actions} />
+      <div>living: {livingCount}</div>
+      <div className="board">
+        {board.map((row, y) => (
+          <div key={y} className="row">
+            {row.map((active, x) => (
+              <div key={x} className={classnames('cell', { active })} onClick={() => actions.toggleCell(x, y)} />
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
