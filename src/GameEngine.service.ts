@@ -63,4 +63,13 @@ export class GameEngine {
 
     return [nextState, empty];
   }
+
+  randomize(state: GameState): GameState {
+    const nextState = this.mapState(state, cellState => {
+      if (!cellState) return Math.random() > 0.92 ? CellState.ALIVE : CellState.DEAD;
+      return cellState;
+    });
+
+    return nextState;
+  }
 }

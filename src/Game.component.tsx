@@ -6,8 +6,9 @@ import { GameState, CellState } from './GameEngine.service';
 enum ICONS {
   STOP = '■',
   PLAY = '▶',
-  NEXT = '✚',
-  CLEAR = '❌'
+  NEXT = '⏭',
+  CLEAR = '❌',
+  RANDOMIZE = '🎲'
 }
 
 type Props = {
@@ -28,6 +29,7 @@ export const Game: React.FC<Props> = ({ width = 50, height = 50 }) => {
     <div className="game">
       <h1>life.</h1>
       <div className="controls">
+        <button onClick={actions.randomize}>{ICONS.RANDOMIZE}</button>
         <button onClick={actions.clear}>{ICONS.CLEAR}</button>
         <button onClick={actions.togglePlaying}>{buttonIcon}</button>
         <button onClick={actions.nextGeneration}>{ICONS.NEXT}</button>

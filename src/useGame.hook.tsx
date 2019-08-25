@@ -6,6 +6,7 @@ export interface GameActions {
   toggleCell(x: number, y: number): void;
   nextGeneration(): void;
   clear(): void;
+  randomize(): void;
 }
 
 export const useGame = (width: number, height: number) => {
@@ -15,6 +16,9 @@ export const useGame = (width: number, height: number) => {
 
   const actions: GameActions = useMemo(
     () => ({
+      randomize() {
+        updateBoard(board => game.randomize(board));
+      },
       clear() {
         updateBoard(game.createState(height, width));
       },
