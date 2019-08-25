@@ -20,7 +20,7 @@ export const useGame = (width: number, height: number) => {
         updateBoard(board => game.randomize(board));
       },
       clear() {
-        updateBoard(game.createState(height, width));
+        updateBoard(game.createState(width, height));
       },
       togglePlaying() {
         updatePlaying(p => !p);
