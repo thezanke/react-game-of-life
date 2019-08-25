@@ -1,6 +1,6 @@
 {
   "name": "life",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "private": true,
   "dependencies": {
     "@types/classnames": "^2.2.9",
