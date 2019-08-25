@@ -8,7 +8,7 @@ export type GameState = CellState[][];
 export class GameEngine {
   constructor(private width: number, private height: number) {}
 
-  createState(height: number, width: number, mapFn: (v: unknown, k: number) => CellState = () => 0): GameState {
+  createState(width: number, height: number, mapFn: (v: unknown, k: number) => CellState = () => 0): GameState {
     return Array.from({ length: height }, () => Array.from({ length: width }, mapFn));
   }
 
@@ -66,7 +66,7 @@ export class GameEngine {
 
   randomize(state: GameState): GameState {
     const nextState = this.mapState(state, cellState => {
-      if (!cellState) return Math.random() > 0.92 ? CellState.ALIVE : CellState.DEAD;
+      if (!cellState) return Math.random() >= 0.9 ? CellState.ALIVE : CellState.DEAD;
       return cellState;
     });
 
